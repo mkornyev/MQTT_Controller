@@ -1,0 +1,6 @@
+framework module Pods_mqttRemote {
+  umbrella header "Pods-mqttRemote-umbrella.h"
+
+  export *
+  module * { export * }
+}
