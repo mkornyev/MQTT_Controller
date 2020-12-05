@@ -14,7 +14,7 @@ class RemoteController: UIViewController {
     
     // MARK: - Vars
     let TRANSMISSION_TYPE:TRANSMISSION_TYPE = .DEVICEMOTION
-    let MESSAGE_INTERVAL = 0.5 // Seconds
+    let MESSAGE_INTERVAL = 0.25 // Seconds
     
     var remote:Remote = Remote()
     var motionManager:CMMotionManager = (UIApplication.shared.delegate as! AppDelegate).motionManager
@@ -30,7 +30,7 @@ class RemoteController: UIViewController {
     }
     var y:Double = 0.0 {
         didSet {
-            pitchLabel.text = String(x)
+            pitchLabel.text = String(y)
         }
     }
     var z:Double = 0.0
@@ -44,8 +44,8 @@ class RemoteController: UIViewController {
         super.viewDidLoad()
         toggleButton.setTitle("Start", for: .normal)
         toggleButton.layer.cornerRadius = 4
-        rollLabel.text = "0.0"
-        pitchLabel.text = "0.0"
+        rollLabel.text = "0.00"
+        pitchLabel.text = "0.00"
     }
     
     // MARK: - Functions
