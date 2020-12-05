@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import MQTT
 import CocoaMQTT
 
 class Remote {
@@ -20,6 +19,7 @@ class Remote {
     let password = "cks"
     let publish_topic = "mkornyev"
     let dieout_topic: String
+    let dieout_message = "cocoamqtt_dieout"
 //    let websocket:CocoaMQTTWebSocket
     let mqtt:CocoaMQTT
     
@@ -32,10 +32,10 @@ class Remote {
         mqtt = CocoaMQTT(clientID: self.clientID, host: host, port: port)
         mqtt.username = username
         mqtt.password = password
-        mqtt.willMessage = CocoaMQTTWill(topic: "mkornyev", message: "dieout") // TCP
+        mqtt.willMessage = CocoaMQTTWill(topic: dieout_topic, message: dieout_message) // TCP
         mqtt.keepAlive = 30 // seconds
         mqtt.delegate = self
-        mqtt.logLevel = .debug
+        mqtt.logLevel = .off //.debug
         mqtt.enableSSL = true;
 
         // Callbacks

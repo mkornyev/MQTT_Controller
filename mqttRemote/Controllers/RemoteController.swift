@@ -7,19 +7,47 @@
 //
 
 import UIKit
+import CoreMotion
 
 class RemoteController: UIViewController {
+    
+    // MARK: - Vars
     var remote:Remote = Remote()
+    var motionManager:CMMotionManager = (UIApplication.shared.delegate as! AppDelegate).motionManager
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func sendMessage(_ sender: UIButton) {
-        let message = "SWIFT PING"
-        print("Sending: \(message)")
+    // MARK: - Functions
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
         
-        remote.sendMessage(message)
+    }
+    
+    @IBAction func sendMessage(_ sender: UIButton) {
+        motionManager.gyroUpdateInterval = 0.2
+        motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
+            if let motionData = data as CMGyroData?
+            {
+                let x = motionData.rotationRate.x
+                let y = motionData.rotationRate.y
+                let z = motionData.rotationRate.z
+                let message = "\(x) : \(y) : \(z)"
+                self.remote.sendMessage(message)
+            }
+        }
+        
+        motionManager.startAccelerometerUpdates()
+
+        if let accelerometerData = motionManager.accelerometerData {
+            print("Accel Data1: \(accelerometerData)")
+            remote.sendMessage("Got accel data 1")
+        }
+        
+//        remote.sendMessage(message)
     }
 
 
