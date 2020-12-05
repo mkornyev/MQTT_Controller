@@ -10,7 +10,7 @@ import UIKit
 import CoreMotion
 
 
-class RemoteController: UIViewController {
+class RemoteController: UIViewController, ElementAnimations {
     
     // MARK: - Vars
     let TRANSMISSION_TYPE:TRANSMISSION_TYPE = .DEVICEMOTION
@@ -39,6 +39,7 @@ class RemoteController: UIViewController {
     @IBOutlet weak var rollLabel: UILabel!
     @IBOutlet weak var pitchLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var viewLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +49,11 @@ class RemoteController: UIViewController {
         pitchLabel.text = "0.00"
     }
     
+
     // MARK: - Functions
-    override func viewDidAppear(_ animated: Bool) { }
+    override func viewDidAppear(_ animated: Bool) {
+        Self.bounceImage(viewLogo)
+    }
     
     @IBAction func toggleButtonPressed(_ sender: UIButton) {
         if isParsing {

@@ -8,10 +8,16 @@
 
 import UIKit
 
-class MessageController: UIViewController {
+class MessageController: UIViewController, ElementAnimations {
+    
+    @IBOutlet weak var viewLogo: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Self.bounceImage(viewLogo)
+    }
+    
 }
