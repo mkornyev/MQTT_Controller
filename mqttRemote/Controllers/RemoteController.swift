@@ -45,8 +45,8 @@ class RemoteController: UIViewController, ElementAnimations {
         super.viewDidLoad()
         toggleButton.setTitle("Start", for: .normal)
         toggleButton.layer.cornerRadius = 4
-        rollLabel.text = "0.00"
-        pitchLabel.text = "0.00"
+        rollLabel.text = "0.0000"
+        pitchLabel.text = "0.0000"
     }
     
 

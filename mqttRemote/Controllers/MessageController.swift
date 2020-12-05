@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageController: UIViewController, ElementAnimations {
+class MessageController: UIViewController, UITextFieldDelegate, ElementAnimations {
     
     var preferences = Preferences()
     @IBOutlet weak var viewLogo: UIImageView!
@@ -27,6 +27,13 @@ class MessageController: UIViewController, ElementAnimations {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateButton.layer.cornerRadius = 4
+        hostField.delegate = self
+        portField.delegate = self
+        userField.delegate = self
+        passField.delegate = self
+        pubTopicField.delegate = self
+        dieoutMsgField.delegate = self
+        
         hostField.text = Preferences.shared.host
         portField.text = String(Preferences.shared.port)
         userField.text = Preferences.shared.username
@@ -37,6 +44,12 @@ class MessageController: UIViewController, ElementAnimations {
     
     override func viewDidAppear(_ animated: Bool) {
         Self.bounceImage(viewLogo)
+    }
+    
+    func textFieldShouldReturn(_ userText: UITextField) -> Bool {
+        userText.resignFirstResponder()
+        self.view.endEditing(true)
+        return true;
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
