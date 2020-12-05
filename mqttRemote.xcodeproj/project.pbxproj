@@ -15,6 +15,8 @@
 		50C3531C257AACDF005924B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C3531B257AACDF005924B4 /* Assets.xcassets */; };
 		50C3531F257AACDF005924B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C3531D257AACDF005924B4 /* LaunchScreen.storyboard */; };
 		50C35327257AB099005924B4 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C35326257AB098005924B4 /* Remote.swift */; };
+		50C3532C257B0D0A005924B4 /* TransmissionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C3532B257B0D0A005924B4 /* TransmissionTypes.swift */; };
+		50C3532E257B1F12005924B4 /* RemoteControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C3532D257B1F12005924B4 /* RemoteControllerExtension.swift */; };
 		EEA56A0EFF91074244BA1C66 /* Pods_mqttRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1273D3F2BE080EC37106B27 /* Pods_mqttRemote.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		50C3531E257AACDF005924B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50C35320257AACDF005924B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50C35326257AB098005924B4 /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
+		50C3532B257B0D0A005924B4 /* TransmissionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmissionTypes.swift; sourceTree = "<group>"; };
+		50C3532D257B1F12005924B4 /* RemoteControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControllerExtension.swift; sourceTree = "<group>"; };
 		D93B15AB9F6C19EB4A78453E /* Pods-mqttRemote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mqttRemote.debug.xcconfig"; path = "Target Support Files/Pods-mqttRemote/Pods-mqttRemote.debug.xcconfig"; sourceTree = "<group>"; };
 		E1273D3F2BE080EC37106B27 /* Pods_mqttRemote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mqttRemote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				50C35326257AB098005924B4 /* Remote.swift */,
+				50C3532B257B0D0A005924B4 /* TransmissionTypes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				50C35316257AACDC005924B4 /* RemoteController.swift */,
+				50C3532D257B1F12005924B4 /* RemoteControllerExtension.swift */,
 				50C35314257AACDC005924B4 /* MessageController.swift */,
 			);
 			path = Controllers;
@@ -236,11 +242,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C3532E257B1F12005924B4 /* RemoteControllerExtension.swift in Sources */,
 				50C35317257AACDC005924B4 /* RemoteController.swift in Sources */,
 				50C35327257AB099005924B4 /* Remote.swift in Sources */,
 				50C35315257AACDC005924B4 /* MessageController.swift in Sources */,
 				50C35311257AACDC005924B4 /* AppDelegate.swift in Sources */,
 				50C35313257AACDC005924B4 /* SceneDelegate.swift in Sources */,
+				50C3532C257B0D0A005924B4 /* TransmissionTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

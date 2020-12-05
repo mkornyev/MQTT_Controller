@@ -14,6 +14,4 @@ class MessageController: UIViewController {
         super.viewDidLoad()
     }
 
-
 }
-

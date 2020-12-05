@@ -9,47 +9,122 @@
 import UIKit
 import CoreMotion
 
+
 class RemoteController: UIViewController {
     
     // MARK: - Vars
+    let TRANSMISSION_TYPE:TRANSMISSION_TYPE = .DEVICEMOTION
+    let MESSAGE_INTERVAL = 0.5 // Seconds
+    
     var remote:Remote = Remote()
     var motionManager:CMMotionManager = (UIApplication.shared.delegate as! AppDelegate).motionManager
     
+    var timer:Timer?
+    var isParsing = false
+    
+    // Broadcast variables
+    var x:Double = 0.0 {
+        didSet {
+            rollLabel.text = String(x)
+        }
+    }
+    var y:Double = 0.0 {
+        didSet {
+            pitchLabel.text = String(x)
+        }
+    }
+    var z:Double = 0.0
+    
+    @IBOutlet weak var toggleButton: UIButton!
+    @IBOutlet weak var rollLabel: UILabel!
+    @IBOutlet weak var pitchLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        toggleButton.setTitle("Start", for: .normal)
+        toggleButton.layer.cornerRadius = 4
+        rollLabel.text = "0.0"
+        pitchLabel.text = "0.0"
     }
     
     // MARK: - Functions
+    override func viewDidAppear(_ animated: Bool) { }
     
-    override func viewDidAppear(_ animated: Bool)
-    {
-        
+    @IBAction func toggleButtonPressed(_ sender: UIButton) {
+        if isParsing {
+            stopSensorParsing()
+            toggleTimer()
+            isParsing.toggle()
+            activityIndicator.stopAnimating()
+            toggleButton.setTitle("Start", for: .normal)
+        } else {
+            startSensorParsing()
+            toggleTimer()
+            isParsing.toggle()
+            activityIndicator.startAnimating()
+            toggleButton.setTitle("Stop", for: .normal)
+        }
     }
     
-    @IBAction func sendMessage(_ sender: UIButton) {
-        motionManager.gyroUpdateInterval = 0.2
-        motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
-            if let motionData = data as CMGyroData?
-            {
-                let x = motionData.rotationRate.x
-                let y = motionData.rotationRate.y
-                let z = motionData.rotationRate.z
-                let message = "\(x) : \(y) : \(z)"
-                self.remote.sendMessage(message)
+    func toggleTimer() {
+        if (self.timer as Timer?) != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+        else {
+            self.timer = Timer.scheduledTimer(withTimeInterval: MESSAGE_INTERVAL, repeats: true, block: { timer in
+                print("Timer fired")
+                self.broadcastVariables()
+            })
+        }
+    }
+    
+    func broadcastVariables() {
+        let message = "\(x),\(y)"
+        self.remote.sendMessage(message)
+    }
+    
+    func startSensorParsing() {
+        switch TRANSMISSION_TYPE {
+        case .GYROSCOPE:
+            motionManager.gyroUpdateInterval = 0.2
+            motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
+                if let motionData = data as CMGyroData?
+                {
+                    self.x = motionData.rotationRate.x
+                    self.y = motionData.rotationRate.y
+                    self.z = motionData.rotationRate.z
+                }
+            }
+            
+        case .ACCELEROMETER:
+            motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
+                if let motionData = data as CMAccelerometerData?
+                {
+                    self.x = motionData.acceleration.x
+                    self.y = motionData.acceleration.y
+                    self.z = motionData.acceleration.z
+                }
+            }
+        
+        case .DEVICEMOTION:
+            motionManager.startDeviceMotionUpdates(to: OperationQueue.current!) { (data, error) in
+                if let motionData = data as CMDeviceMotion?
+                {
+                    self.x = motionData.attitude.roll
+                    self.y = motionData.attitude.pitch
+                    self.z = motionData.attitude.yaw
+                }
             }
         }
-        
-        motionManager.startAccelerometerUpdates()
-
-        if let accelerometerData = motionManager.accelerometerData {
-            print("Accel Data1: \(accelerometerData)")
-            remote.sendMessage("Got accel data 1")
-        }
-        
-//        remote.sendMessage(message)
+    }
+    
+    func stopSensorParsing() {
+        motionManager.stopGyroUpdates()
+        motionManager.stopAccelerometerUpdates()
+        motionManager.stopDeviceMotionUpdates()
     }
 
 
 }
-

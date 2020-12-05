@@ -20,18 +20,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        motionManager.stopGyroUpdates()
-        print("Stopped gyro updates")
+        stopSensorParsing()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        motionManager.stopGyroUpdates()
-        print("Stopped gyro updates")
+        stopSensorParsing()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
+        stopSensorParsing()
+    }
+    
+    func stopSensorParsing() {
         motionManager.stopGyroUpdates()
-        print("Stopped gyro updates")
+        motionManager.stopAccelerometerUpdates()
+        motionManager.stopDeviceMotionUpdates()
+        print("Stopped sensor updates")
     }
     
     // MARK: UISceneSession Lifecycle
