@@ -52,6 +52,7 @@ class RemoteController: UIViewController, ElementAnimations {
 
     // MARK: - Functions
     override func viewDidAppear(_ animated: Bool) {
+        remote.connectToServer()
         Self.bounceImage(viewLogo)
     }
     

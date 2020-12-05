@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50AB9F1C257C1FE6000799D6 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB9F1B257C1FE6000799D6 /* Animations.swift */; };
+		50AB9F1E257C2285000799D6 /* RemoteSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB9F1D257C2285000799D6 /* RemoteSettings.swift */; };
 		50C35311257AACDC005924B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C35310257AACDC005924B4 /* AppDelegate.swift */; };
 		50C35313257AACDC005924B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C35312257AACDC005924B4 /* SceneDelegate.swift */; };
 		50C35315257AACDC005924B4 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C35314257AACDC005924B4 /* MessageController.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		1A8F478BCF4FB14ACF592803 /* Pods-mqttRemote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mqttRemote.release.xcconfig"; path = "Target Support Files/Pods-mqttRemote/Pods-mqttRemote.release.xcconfig"; sourceTree = "<group>"; };
 		50AB9F1B257C1FE6000799D6 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		50AB9F1D257C2285000799D6 /* RemoteSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSettings.swift; sourceTree = "<group>"; };
 		50C3530D257AACDC005924B4 /* mqttRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mqttRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C35310257AACDC005924B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50C35312257AACDC005924B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				50C35326257AB098005924B4 /* Remote.swift */,
 				50C3532B257B0D0A005924B4 /* TransmissionTypes.swift */,
+				50AB9F1D257C2285000799D6 /* RemoteSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50C3532E257B1F12005924B4 /* RemoteControllerExtension.swift in Sources */,
+				50AB9F1E257C2285000799D6 /* RemoteSettings.swift in Sources */,
 				50C35317257AACDC005924B4 /* RemoteController.swift in Sources */,
 				50C35327257AB099005924B4 /* Remote.swift in Sources */,
 				50C35315257AACDC005924B4 /* MessageController.swift in Sources */,
