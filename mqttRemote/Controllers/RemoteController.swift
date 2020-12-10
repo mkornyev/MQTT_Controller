@@ -86,7 +86,7 @@ class RemoteController: UIViewController, ElementAnimations {
     }
     
     func broadcastVariables() {
-        let message = "\(x),\(y)"
+        let message = "\(x*100),\(y*100)\n"
         self.remote.sendMessage(message)
     }
     
